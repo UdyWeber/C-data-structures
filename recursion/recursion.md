@@ -30,4 +30,20 @@
   including the main process.
 - The time complexity of a recursive function can be represented using Recurrence Relation where each operation adds 1 
   unit to the formula and the call of a function that repeats n times is n-1 because it already has called the function
-  once. [More content on Wikipedia](https://en.wikipedia.org/wiki/Recurrence_relation) 
+  once. [More content on Wikipedia](https://en.wikipedia.org/wiki/Recurrence_relation)
+- Static variables will always use the same address on the memory so, it will not recreate the variable by recursively 
+  recreating the variable, same thing for global variables in our code.
+- The fibonacci function is a recursive function labeled as excessive recursive because it calculates the same value 
+  multiple times so, we can make a process called memoization to store values already calculated and use them later on 
+  to avoid excessive calls 
+
+## Types of Recursion
+- **Tail Recursion**: Defines a function that calls itself in the last statement of the function. In cases of tail 
+  recursion you can efficiently convert them into loops because the space complexity of the recursion would be O(n) and 
+  the loop will be O(1) because it adds just one activation record to the stack
+- **Head Recursion**: Defines a function that calls itself in the first statement of the function. It still can be 
+  converted in a loop, but it'll end up looking a bit different that it is.
+- **Tree Recursion**: Defines a function that calls itself more than one time. It's time complexity is of O(2^n) and 
+  the space complexity is O(n)
+- **Indirect Recursion**: Defines recursive functions that call each other circularly.
+- **Nested Recursion**: Defines a function that calls itself using itself as a parameter.

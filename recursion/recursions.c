@@ -155,3 +155,11 @@ int combination_formula_pascal_triangle(int n, int r) {
     // contiguous value in the triangle
     return combination_formula_pascal_triangle(n-1, r-1) + combination_formula_pascal_triangle(n - 1, r);
 }
+
+void tower_of_hanoi(int n, int a, int b, int c) {
+    if (n > 0) {
+        tower_of_hanoi(n - 1, a, c, b);
+        printf("(%d to %d)\n", a, c);
+        tower_of_hanoi(n - 1, b, a, c);
+    }
+}

@@ -19,5 +19,6 @@ double taylor_series_of_n_using_horner(int x, int n);
 int fib(int n);
 int combination_formula(int n, int r);
 int combination_formula_pascal_triangle(int n, int r);
+void tower_of_hanoi(int n, int a, int b, int c);
 
 #endif //STUDYING_DATA_STRUCTURES_RECURSIONS_H

@@ -9,4 +9,6 @@ add_executable(
         basics/basics.h
         recursion/recursions.c
         recursion/recursions.h
+        datastrucutres/array/array_practice.c
+        datastrucutres/array/array_practice.h
 )

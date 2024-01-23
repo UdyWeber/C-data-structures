@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "basics/basics.h"
 #include "recursion/recursions.h"
+#include "datastrucutres/array/array_practice.h"
 
 int main() {
     // array_practice();
@@ -20,5 +21,7 @@ int main() {
     // printf("%lf\n", taylor_series_of_n(1, 10));
     // printf("%lf\n", taylor_series_of_n_using_horner(1, 10));
     // tower_of_hanoi(4, 1, 2, 3);
+    // resize_array();
+    creating_2D_arrays();
     return 0;
 }

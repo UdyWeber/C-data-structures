@@ -3,6 +3,7 @@
 //
 #include <stdio.h>
 #include <stdlib.h>
+#include "array_practice.h"
 
 void resize_array() {
     int *p1 = (int *) malloc(5 * sizeof(int));
@@ -80,4 +81,48 @@ void creating_2D_arrays() {
     }
 
     free(C);
+}
+
+void display(Array *arr) {
+    for (int i = 0; i < arr->length; i++) {
+        if (i == arr->length - 1) {
+            printf("%d", arr->A[i]);
+            continue;
+        }
+
+        printf("%d - ", arr -> A[i]);
+    }
+}
+
+void array_adt() {
+    Array arr;
+    int size, elements = 0;
+
+    printf("Enter the array size: ");
+    scanf("%d", &size);
+
+    arr.size = size;
+    arr.A = (int *) malloc(size * sizeof(int));
+
+    while (true) {
+        printf("Enter how many numbers are going to be filled: ");
+        scanf("%d", &elements);
+
+        if (elements > size || elements < 0) {
+            printf("Elements cannot be bigger than the size of the array nor less\n");
+            continue;
+        }
+
+        break;
+    }
+
+    for (int i = 0; i < elements; i++) {
+        printf("\nPlease enter the number to be inserted in the array pos[%d]: ", i);
+        scanf("%d", &arr.A[i]);
+
+    }
+    arr.length = elements;
+
+    printf("\nDisplaying all filled array elements\n");
+    display(&arr);
 }

@@ -22,6 +22,7 @@ int main() {
     // printf("%lf\n", taylor_series_of_n_using_horner(1, 10));
     // tower_of_hanoi(4, 1, 2, 3);
     // resize_array();
-    creating_2D_arrays();
+    // creating_2D_arrays();
+    array_adt();
     return 0;
 }

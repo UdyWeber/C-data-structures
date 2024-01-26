@@ -40,4 +40,30 @@
 - We can declare a 2D array using the double pointer approach, where we will create it fully on the heap. First we 
   have to allocate a pointer to an array of int array pointers `int **A = (int**) malloc(3 * sizeof(int*))`, and then
   we have to fill those spots with pointers to dynamically allocated arrays on the heap.
-- 
+
+## Arrays in Compilers
+- For the compiler to allocate an Array, it needs to find the base location in memory for doing that, then it calculates
+  the formula for storing the array contiguously in memory. Is a simple formula `base_mem_addr + array_size * data_type_size`
+  so if our base memory address is 200, the size of the array 3 and the size of the data type 2 we know that our array 
+  goes from the 200 memory location to 206.
+- 2D Arrays are handled by compilers is declared as a single dimension array, and to handle performing operations in 
+  rows and columns we can do row-major mapping or column-major mapping
+
+  ### Row-major Mapping
+  - In row-major mapping the 2D array is stored in the single dimensioned array row by row.
+  - The formula that the compiler uses to access the 2D array memory locations is `base_mem_addr + (row * max_columns + column) * data_type_size`
+  
+  ### Column-major Mapping
+  - In column-major mapping the 2D array is stored in the single dimensioned array column by column.
+  - The formula that the compiler uses to access the 2D array memory locations is `base_mem_addr + (column * max_rows + row) * data_type_size`
+
+## Array ADT
+- Programming languages such C and C++ give us primitive data structures like arrays built-in, and we are supposed to 
+  implement some methods to help us do specific operations in those data structures.
+- We have some data that we should have in an Array
+  - Pointer: Pointer that points to the first element of an Array
+  - Size: How many items an array can handle
+  - Length: How many items were added to an array
+- Here are some of the helper methods that we are going to create
+  - Display: Display all elements that are filled in an array.
+  - Insert

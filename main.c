@@ -24,5 +24,4 @@ int main() {
     // resize_array();
     // creating_2D_arrays();
     array_adt();
-    return 0;
 }

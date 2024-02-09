@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "array_practice.h"
+#include <errno.h>
 
 void resize_array() {
     int *p1 = (int *) malloc(5 * sizeof(int));
@@ -94,6 +95,32 @@ void display(Array *arr) {
     }
 }
 
+void append(Array *arr, int append_value) {
+    if (arr -> length < arr -> size) {
+        arr->A[arr -> length] = append_value;
+        arr -> length++;
+        return;
+    }
+
+    int *new_array = (int*) malloc((arr -> size + 1) * sizeof(int));
+
+    if (new_array == NULL) {
+        perror("Error allocating new resized array");
+        return;
+    }
+
+    for(int i = 0; i < arr -> length; i++) {
+        new_array[i] = arr -> A[i];
+    }
+    new_array[arr -> length] = append_value;
+
+    free(arr -> A);
+    arr -> A = new_array;
+
+    arr -> length++;
+    arr -> size++;
+}
+
 void array_adt() {
     Array arr;
     int size, elements = 0;
@@ -125,4 +152,14 @@ void array_adt() {
 
     printf("\nDisplaying all filled array elements\n");
     display(&arr);
+
+    int append_value;
+
+    printf("\nEnter a number to be appended\n");
+    scanf("%d", &append_value);
+
+    append(&arr, append_value);
+    display(&arr);
+
+    free(arr.A);
 }

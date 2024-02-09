@@ -84,6 +84,23 @@ void creating_2D_arrays() {
     free(C);
 }
 
+void resize(Array *arr) {
+    int *new_array = (int*) malloc((arr -> size + 1) * sizeof(int));
+
+    if (new_array == NULL) {
+        perror("Error allocating new resized array");
+        exit(EXIT_FAILURE);
+    }
+
+    for(int i = 0; i < arr -> length; i++) {
+        new_array[i] = arr -> A[i];
+    }
+
+    free(arr -> A);
+    arr -> A = new_array;
+    arr -> size++;
+}
+
 void display(Array *arr) {
     for (int i = 0; i < arr->length; i++) {
         if (i == arr->length - 1) {
@@ -96,30 +113,137 @@ void display(Array *arr) {
 }
 
 void append(Array *arr, int append_value) {
-    if (arr -> length < arr -> size) {
-        arr->A[arr -> length] = append_value;
-        arr -> length++;
-        return;
+    if (arr -> length == arr -> size) {
+        resize(arr);
     }
 
-    int *new_array = (int*) malloc((arr -> size + 1) * sizeof(int));
+    arr->A[arr -> length] = append_value;
+    arr -> length++;
+}
 
-    if (new_array == NULL) {
-        perror("Error allocating new resized array");
-        return;
+void insert(Array *arr, int value_to_insert, int index) {
+    if (index > arr -> length || index < 0) {
+        perror("Cannot insert element outside of array bounds");
+        exit(EXIT_FAILURE);
     }
+
+    if (arr -> length == arr -> size) {
+        resize(arr);
+    }
+    // Shift the elements to the end  of the array
+    for(int i = arr -> length; i > index; i-- ) {
+        arr -> A[i] = arr -> A[i-1];
+    }
+    // Insert new value into blank space
+    arr -> A[index] = value_to_insert;
+    arr -> length++;
+}
+
+int delete(Array *arr, int index) {
+    if (index >= arr -> length || index < 0) {
+        perror("Cannot delete element outside of array bounds");
+        exit(EXIT_FAILURE);
+    }
+
+    int deleted_value = arr->A[index];
+
+    for(int i = index; i < arr -> length; i++) {
+        arr -> A[i] = arr -> A[i+1];
+    }
+    arr -> length--;
+    return deleted_value;
+}
+
+int linear_search(Array *arr, int value) {
+    printf("Using linear search\n");
 
     for(int i = 0; i < arr -> length; i++) {
-        new_array[i] = arr -> A[i];
+        if(arr -> A[i] == value) {
+            return i;
+        }
     }
-    new_array[arr -> length] = append_value;
-
-    free(arr -> A);
-    arr -> A = new_array;
-
-    arr -> length++;
-    arr -> size++;
+    return -1;
 }
+
+int binary_search(Array *arr, int value) {
+    printf("Using binary search\n");
+
+    int low = 0, high = arr -> length;
+
+    while (low <= high) {
+        // Most robust method also could be
+        // int middle = (high + low) / 2;
+        int middle = low +  (high - low) / 2;
+        int target = arr -> A[middle];
+
+        if (value == target) {
+            return middle;
+        } else if(value > target) {
+            low = middle + 1;
+        } else {
+            high = middle - 1;
+        }
+    }
+
+    return -1;
+}
+
+int get(Array *arr, int index) {
+    if (index < 0 || index > arr -> size) {
+        perror("Array out of bounds");
+        exit(EXIT_FAILURE);
+    }
+
+   return arr -> A[index];
+}
+
+void set(Array *arr, int index, int value) {
+    if (index < 0 || index > arr -> size) {
+        perror("Array out of bounds");
+        exit(EXIT_FAILURE);
+    }
+
+    arr -> A[index] = value;
+}
+
+int max(Array *arr) {
+    int max = arr -> A[0];
+
+    for (int i = 1; i < arr -> length; i++) {
+        if (arr -> A[i] > max) {
+            max = arr -> A[i];
+        }
+    }
+
+    return max;
+}
+
+int min(Array *arr) {
+    int min = arr -> A[0];
+
+    for (int i = 1; i < arr -> length; i++) {
+        if (arr -> A[i] < min) {
+            min = arr -> A[i];
+        }
+    }
+
+    return min;
+}
+
+int sum(Array *arr) {
+    int sum = 0;
+
+    for (int i = 0; i < arr -> length; i++) {
+        sum += arr -> A[i];
+    }
+
+    return sum;
+}
+
+int avg(Array *arr) {
+    return sum(arr) / arr -> length;
+}
+
 
 void array_adt() {
     Array arr;
@@ -161,5 +285,36 @@ void array_adt() {
     append(&arr, append_value);
     display(&arr);
 
+    int insert_value, insert_index;
+
+    printf("\nEnter a number to be inserted\n");
+    scanf("%d", &insert_value);
+
+    printf("\nEnter a index from 0 to %d\n", arr.length);
+    scanf("%d", &insert_index);
+
+    insert(&arr, insert_value, insert_index);
+    display(&arr);
+
+    int index_to_delete;
+
+    printf("\nEnter a index from 0 to %d to be deleted\n", arr.length - 1);
+    scanf("%d", &index_to_delete);
+
+    printf("Successfully deleted value %d\n", delete(&arr, index_to_delete));
+    display(&arr);
+
+    int (*search_ptr)(Array*, int) = arr.length <= 5 ? linear_search : binary_search;
+
+    int num_to_search;
+
+    printf("\nType a number to see if it exists\n");
+    scanf("%d", &num_to_search);
+
+    int found_index = search_ptr(&arr, num_to_search);
+
+    found_index == -1
+        ? printf("Number %d not found\n", num_to_search)
+        : printf("Found %d at index %d", num_to_search, found_index);
     free(arr.A);
 }

@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <malloc.h>
 #include "basics/basics.h"
 #include "recursion/recursions.h"
 #include "datastrucutres/array/array_practice.h"

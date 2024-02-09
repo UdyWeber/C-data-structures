@@ -65,5 +65,19 @@
   - Size: How many items an array can handle
   - Length: How many items were added to an array
 - Here are some of the helper methods that we are going to create
-  - Display: Display all elements that are filled in an array.
-  - Insert
+  - Display: Display all elements that are filled in an array, it has complexity of O(n).
+  - Append: Adding an element at a free space at the end of an array, it has complexity of O(1) in cases where you don't
+    need to resize the array .
+  - Insert: Takes as parameters an index and a value, insert the value into the index given then fixes the index of the 
+    other members of the array.
+  - Remove: Takes as parameters an index to be deleted, we start shifting all elements in front of the index to the 
+    previous index till we have no blank spaces and overwrite the index value, the time complexity is O(n) in the worst 
+    case.
+  - Linear Search: We iterate over the entire array and see if we can find the number. complexity O(n). We can improve 
+    linear search by swapping values commonly searched to the head of the array, to achieve almost constant time.
+  - Binary Search: We divide the array into areas based in the highest and lowest value, then we see the value is there. complexity O(log n).
+  - Max: Gets the maximum value from the array
+  - Min: Gets the minimum value from the array
+  - Avg: Gets the average value from the array elements.
+  - Sum: Gets the sum of all elements present in the array.
+  

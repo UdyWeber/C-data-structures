@@ -24,5 +24,12 @@ int main() {
     // tower_of_hanoi(4, 1, 2, 3);
     // resize_array();
     // creating_2D_arrays();
-    array_adt();
+    // array_adt();
+    // test_merge_array();
+    // test_set_union();
+    // test_set_intersection();
+    // test_set_difference();
+    // test_find_missing_element();
+    // test_find_multiple_missing_elements_sorted();
+    test_find_multiple_missing_elements();
 }

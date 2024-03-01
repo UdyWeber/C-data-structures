@@ -80,4 +80,16 @@
   - Min: Gets the minimum value from the array
   - Avg: Gets the average value from the array elements.
   - Sum: Gets the sum of all elements present in the array.
-  
+  - Reverse: To reverse an array we have to methods
+    - Using a new array: We copy the values in reverse to the new array and then copy it back to the first array
+    - In place: We can point two variables A and B, A in the beginning of the array and B in the end, and swapping the 
+      values until A >= B
+  - Left Shift / Rotate: We can shift  the elements in the array to the left N times.
+  - Merge: Array merge can only be done on sorted arrays.
+  - Set Operations: 
+    - Union: We have to copy the first set into a new array, and the second we have to see if the elements exist
+      in the result set in order to append it or not. If our sets are sorted we can use the merge method just looking 
+      for duplicates.
+    - Intersection: We have to compare the first with the second set, to see if there are elements in common, and adding 
+      it to the result set.
+    - Difference: We have to compare the first set with the second and only add the values that are not in the second one.

@@ -5,9 +5,10 @@
 #include <stdlib.h>
 #include "array_practice.h"
 #include <errno.h>
+#include <stdbool.h>
 
 void resize_array() {
-    int *p1 = (int *) malloc(5 * sizeof(int));
+    int *p1 = malloc(5 * sizeof(int));
     p1[0] = 1;
     p1[1] = 2;
     p1[2] = 9;
@@ -210,7 +211,7 @@ void display(Array *arr) {
     }
 }
 
-void append(Array *arr, int append_value) {
+static void append(Array *arr, int append_value) {
     if (arr->length == arr->size) {
         resize(arr);
     }

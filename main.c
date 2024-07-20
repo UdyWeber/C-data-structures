@@ -3,6 +3,7 @@
 #include "basics/basics.h"
 #include "recursion/recursions.h"
 #include "datastrucutres/array/array_practice.h"
+#include "datastrucutres/linked_structs/singly_linked_list.h"
 
 int main() {
     // array_practice();
@@ -31,5 +32,6 @@ int main() {
     // test_set_difference();
     // test_find_missing_element();
     // test_find_multiple_missing_elements_sorted();
-    test_find_multiple_missing_elements();
+    // test_find_multiple_missing_elements();
+    test_methods();
 }

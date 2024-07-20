@@ -28,7 +28,7 @@ void structures_practice() {
     Rectangle r; // Declaration
     Rectangle r2 = {10, 5}; // Declaration + Initialization
 
-    printf("Size of the rectangle structure: %llu\n", sizeof(r));
+    printf("Size of the rectangle structure: %lu\n", sizeof(r));
     printf("Length of rectangle: %d\n", r2.length);
     printf("Area of rectangle: %d\n", r2.length * r2.breadth);
 }
@@ -39,10 +39,10 @@ void pointers_practice() {
     float *float_pointer;
     int *arr_pointer[25];
 
-    printf("%llu\n", sizeof(int_pointer));
-    printf("%llu\n", sizeof(char_pointer));
-    printf("%llu\n", sizeof(float_pointer));
-    printf("%llu\n", sizeof(arr_pointer));
+    printf("%lu\n", sizeof(int_pointer));
+    printf("%lu\n", sizeof(char_pointer));
+    printf("%lu\n", sizeof(float_pointer));
+    printf("%lu\n", sizeof(arr_pointer));
 
     // Declaring a pointer
     int *p;
@@ -64,7 +64,7 @@ void pointers_practice() {
 
     int a = 10;
     j = &a;
-    printf("Memory from a that j is pointing to: %llu\n", j);
+    printf("Memory from a that j is pointing to: %p\n", j);
     printf("Dereferenced value of j: %d\n", *j);
     a = 20;
     printf("Dereferenced value of j after changin A: %d", *j);

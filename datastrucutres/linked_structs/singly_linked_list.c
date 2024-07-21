@@ -72,7 +72,29 @@ void preppend(SinglyLinkedList *list, const int value) {
     list->length++;
 }
 
-int insert_after(SinglyLinkedList *list, int value) {
+int insert_after(SinglyLinkedList *list, const int after, const int value) {
+    if (list == NULL || list -> head == NULL) {
+        return -1;
+    }
+
+    Node *curr = list->head;
+    while(curr != NULL) {
+        if (curr->value == after) {
+            if (curr->next == NULL) {
+                curr->next = create_node(value);
+            } else if (curr->next != NULL) {
+                Node *tmp = curr->next;
+                curr->next = create_node(value);
+                curr->next->next = tmp;
+            }
+
+            list->length++;
+            return 1;
+        }
+
+        curr = curr->next;
+    }
+
     return -1;
 }
 
@@ -166,6 +188,7 @@ int delete_value(SinglyLinkedList *list, const int value) {
                 free_node(tmp);
                 tmp = NULL;
 
+                list->length--;
                 return 1;
             }
 
@@ -234,12 +257,14 @@ void test_methods() {
     preppend(ll, 3);
     append(ll, 32);
     preppend(ll, 12);
+    insert_after(ll, 12, 420);
+    insert_after(ll, 32, 69);
 
     // Apply transformations
     delete_after(ll, 5);
     apply_func(ll, square);
-    // free_node(pop(ll));
-    // delete_value(ll, 9);
+    free_node(pop(ll));
+    delete_value(ll, 9);
 
     // Print everything
     print_elements(ll, true);

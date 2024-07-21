@@ -20,7 +20,7 @@ SinglyLinkedList* create_list_with_value(const int value);
 void free_list(SinglyLinkedList* l);
 static void append(SinglyLinkedList* list,int value);
 void preppend(SinglyLinkedList* list, int value);
-int insert_after(SinglyLinkedList* list, int value);
+int insert_after(SinglyLinkedList* list, int after, int value);
 Node* prepop(SinglyLinkedList* list);
 Node* pop(SinglyLinkedList* list);
 int delete_after(SinglyLinkedList* list, int value);

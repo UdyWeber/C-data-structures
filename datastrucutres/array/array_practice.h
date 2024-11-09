@@ -11,12 +11,17 @@ typedef struct Array {
     int length;
 } Array;
 
+// Array functions
 void resize_array();
 void array_adt();
 void creating_2D_arrays();
 Array* merge_array(Array *a, Array *b);
 void free_dynamic_array(Array *arr);
 Array* create_dynamic_array(int size, int length);
+Array* map(Array *arr, int (*apply)(int));
+void display(Array *arr);
+
+// Testing stuff
 void test_merge_array();
 void test_set_union();
 void test_set_intersection();
@@ -24,6 +29,6 @@ void test_set_difference();
 void test_find_missing_element();
 void test_find_multiple_missing_elements();
 void test_find_multiple_missing_elements_sorted();
-void display(Array *arr);
+void test_map();
 
 #endif //STUDYING_DATA_STRUCTURES_ARRAY_PRACTICE_H

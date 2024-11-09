@@ -4,7 +4,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "array_practice.h"
-#include <errno.h>
 #include <stdbool.h>
 
 void resize_array() {
@@ -209,6 +208,7 @@ void display(Array *arr) {
 
         printf("%d -> ", arr->A[i]);
     }
+    printf("\n");
 }
 
 static void append(Array *arr, int append_value) {
@@ -433,6 +433,7 @@ void free_dynamic_array(Array *arr) {
     free(arr->A);
     arr->A = NULL;
     free(arr);
+    arr = NULL;
 }
 
 Array *merge_array(Array *a, Array *b) {
@@ -557,6 +558,33 @@ Array *set_difference(Array *a, Array *b) {
     }
     result->length = k;
     return result;
+}
+
+Array *map(Array *arr, int (*f)(int)) {
+    Array *new = create_dynamic_array(arr->length, arr->length);
+    for (int i = 0; i < arr->length; i++) {
+        new->A[i] = f(arr->A[i]);
+    }
+    free_dynamic_array(arr);
+    return new;
+}
+
+int my_double(const int val) { return val * 2; }
+int subtract_five(const int val) { return val - 5; }
+
+void test_map() {
+    Array *arr = create_dynamic_array(2, 2);
+
+    arr->A[0] = 10;
+    arr->A[1] = 20;
+
+    display(arr);
+    arr = map(arr, my_double);
+    display(arr);
+    arr = map(arr, subtract_five);
+    display(arr);
+
+    free_dynamic_array(arr);
 }
 
 void test_merge_array() {

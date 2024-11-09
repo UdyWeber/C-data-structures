@@ -11,8 +11,10 @@ add_executable(
         recursion/recursions.h
         datastrucutres/array/array_practice.c
         datastrucutres/array/array_practice.h
-        datastrucutres/linked_structs/nodes.h
+        datastrucutres/nodes.h
         datastrucutres/linked_structs/singly_linked_list.c
         datastrucutres/linked_structs/singly_linked_list.h
-        datastrucutres/linked_structs/nodes.c
+        datastrucutres/nodes.c
+        datastrucutres/trees/binary_tree.h
+        datastrucutres/trees/binary_tree.c
 )

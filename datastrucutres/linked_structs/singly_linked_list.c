@@ -2,7 +2,7 @@
 // Created by JAW on 20/07/2024.
 //
 
-#include "nodes.h"
+#include "../nodes.h"
 #include "singly_linked_list.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -249,7 +249,7 @@ int square(const int x) {
     return x * x;
 }
 
-void test_methods() {
+void test_sll_methods() {
     SinglyLinkedList *ll = create_list();
 
     // Add values

@@ -5,7 +5,7 @@
 #ifndef SINGLY_LINKED_LIST_H
 #define SINGLY_LINKED_LIST_H
 
-#include "nodes.h"
+#include "../nodes.h"
 #include <stdbool.h>
 
 typedef struct {
@@ -28,6 +28,6 @@ int delete_value(SinglyLinkedList* list, int value);
 int search(const SinglyLinkedList* list, int value);
 void print_elements(const SinglyLinkedList* list, bool in_line);
 void apply_func(const SinglyLinkedList* list, ApplyableFunc f);
-void test_methods();
+void test_sll_methods();
 
 #endif //SINGLY_LINKED_LIST_H

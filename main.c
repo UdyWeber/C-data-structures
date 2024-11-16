@@ -5,6 +5,7 @@
 #include "datastrucutres/array/array_practice.h"
 #include "datastrucutres/linked_structs/singly_linked_list.h"
 #include "datastrucutres/trees/binary_tree.h"
+#include "implementations/malloc.h"
 
 int main() {
     // array_practice();
@@ -36,5 +37,6 @@ int main() {
     // test_find_multiple_missing_elements();
     // test_sll_methods();
     // test_binary_tree_methods();
-    test_map();
+    // test_map();
+    exercise1_malloc();
 }

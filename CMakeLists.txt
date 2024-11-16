@@ -17,4 +17,8 @@ add_executable(
         datastrucutres/nodes.c
         datastrucutres/trees/binary_tree.h
         datastrucutres/trees/binary_tree.c
+        implementations/slice.c
+        implementations/slice.h
+        implementations/malloc.c
+        implementations/parse_int.c
 )

@@ -3,7 +3,31 @@
   - Heap
   - Stack
   - Code Section
-
+- Virtual Memory X Physical Memory
+  - Virtual memory is a abstraction layer over random access memory that's on the physical components of the computer
+  it operates translating the physical memory addresses on the RAM board to a virtual address inside each process of
+  the computer, meaning that if we have for example:
+  ```bash
+    virtual address 0x7fff123 on process 1 maps to -> physical address 0x123
+    virtual address 0x7fff123 on process 2 maps to -> physical address 0x456
+  ```
+  Those have trade-offs as well because the translation occurs on runtime and can cause performance issues.
+- Memory Sections
+  - On a running program we have a lot of sections that our memory page allocates that serves different purposes
+  - Read-only Code Segment: Where you're code is loaded.
+    - .init: entry point of the program
+    - .text: Where all the code you've written is located
+    - .rodata: Read only data like hardcoded strings.
+  - Read / Write Segment
+    - .data: Global variables that are initialized.
+    - .bss: Zero value global variables location.
+  - Run-time heap
+    - Its the memory that can be allocated during program execution stored in a Heap
+    - The heap grows up towards the library memory section, where it's located all the code from the libraries.
+  - User Stack
+    - Memory that is allocated created at runtime which will hold local variables and function calls.
+    - The stack grows downwards and can collide with the libraries memory causing a Stack overflow
+ 
 ## Memory Allocation
 - Variables allocated to the stack are those that are declared within the code scope, using normal syntax
 - Variables allocated to the heap are those which we have to use the `malloc()` method and dynamically allocate it 
@@ -62,7 +86,7 @@
 ## Pointers
 - The size of a pointer in latest compilers is 8 bytes, but it used to be 4, independent of the data type of the pointer
 - Pointers are address variables, it's made to store addresses of data in our memory, and they are made for indirectly 
-  accessing the data
+  accessing the data. So you can say that pointers are just variables that hold addresses.
 - Why we need to access data indirectly? 
   - Parameter passing
   - To access memory stored in the heap
@@ -124,3 +148,30 @@
   different types of operations with them.
 - In C++ we can use OOP to structure our program to encapsulate business logic inside of Classes, so classes are those
   who carry the logic with them.
+
+## Compilation Process
+- The compilation process in C has 4 steps associated to it, those being: Preprocessor, Compilation, Assembling and Linking
+  - Preprocessor: Handles all `#` directives in the source file
+  - Compilation: Translates all code into the assembly version.
+  - Assembly: Converts the assembly into machine code that will be executed by the CPU
+  - Linking: Connect all object files and libraries into a final executable
+
+## Preprocessor
+- The preprocessor has directives that are always associated with instructions that should be done at the Preprocessor stage of the compilation.
+- Some instructions given to the preprocessor include:
+  - #include: The include instruction will actually copy paste header/C files to the context it was called.
+  - #define: Will define "variables" that will store literals, which will be copied into the source code.
+  - #ifdef/endif: Conditionals for checking if something is defined at the preprocessor stage.
+
+## Error Handling
+- In C we have `ERRNO` that are integer values associated with the result code of an operation / function
+- Those errors are set when the program finishes with unexpected conditions, like when reading from a file,
+  if the file does not exists `open()` will return -1 and we can handle it:
+  ```c
+  int fd = open("/path/to/file/that/don't/exists");
+  if (fd = -1) {
+    perror("Failed opening file"); // Will print: Failed opening file: No such file or directory
+    return 69;
+  }
+  ```
+  It will return the `ERRNO` = `EEXISTS` that can be handled using `perror()` to give a more insightful view on the error to the user.
